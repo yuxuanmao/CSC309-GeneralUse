@@ -38,11 +38,175 @@ The BOM (Browser Object Model) consists of the objects navigator, history, scree
 				document.URL
 			}
 		}
+		[Methods](){
+			[getElementById](returns the element that has the ID attribute with the specified value. Returns null if no elements with the specified ID exists.){
+				<!DOCTYPE html>
+				<html>
+				<body>
+				<p id="demo">Click the button to change the text in this paragraph.</p>
+				<button onclick="myFunction()">Try it</button>
+				<script>
+				function myFunction() {
+				    document.getElementById("demo").innerHTML = "Hello World";
+				}
+				</script>
+				</body>
+				</html>
+			}
+			[getElementsByName](returns a collection of all elements in the document with the specified name, the value of the name attribute as a NodeList object.){
+				document.getElementsByName(name)
+			}
+			[getElementsByTagName](returns a collection of all elements in the document with the specified tag name, as a NodeList object.){
+				document.getElementsByTagName(tagname)
+			}
+			[close](closes the output stream previously opened with the document.open method, and displays the collected data in this process.){
+				<script>
+				function myFunction() {
+				    document.open();
+				    document.write("<h1>Hello World</h1>");
+				    document.close();
+				}
+				</script>
+			}
+			[open](opens an output stream to collect the output from any document.write or document.writeln methods.){
+				document.open(MIMEtype, replace)
+				//MIMEtype = type of document. default is text/html
+				//replace = the history entry from the document which opened this document
+			}
+			[write](writes HTML expressions or JavaScript code to a document.){
+				document.write(exp1, exp2, exp3, ...)
+			}
+			[writeln](identical to the document.write method, with the addition of writing a newline character after each statement.){
+				document.writeln(exp1, exp2, exp3, ...)
+			}
+			[createElement](creates an Element Node with the specified name.){
+				<!DOCTYPE html>
+				<html>
+				<body>
+				<p>Click the button to make a BUTTON element with text.</p>
+				<button onclick="myFunction()">Try it</button>
+				<script>
+				function myFunction() {
+				    var btn = document.createElement("BUTTON");
+				    var t = document.createTextNode("CLICK ME");
+				    btn.appendChild(t);
+				    document.body.appendChild(btn);
+				}
+				</script>
+				</body>
+				</html>
+			}
+			[createTextNode](creates a Text Node with the specified text.)
+			[appendChild](appends a node as the last child of a node.){
+				var node = document.createElement("LI");                 // Create a <li> node
+				var textnode = document.createTextNode("Water");         // Create a text node
+				node.appendChild(textnode);                              // Append the text to <li>
+				document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
+			}
+			[insertBefore](inserts a node as a child, right before an existing child, which you specify.){
+				var newItem = document.createElement("LI");       // Create a <li> node
+				var textnode = document.createTextNode("Water");  // Create a text node
+				newItem.appendChild(textnode);                    // Append the text to <li>
+				var list = document.getElementById("myList");    // Get the <ul> element to insert a new node
+				list.insertBefore(newItem, list.childNodes[0]);  // Insert <li> before the first child of <ul>
+			}
+			[removeChild](removes a specified child node of the specified element.){
+				node.removeChild(node)
+			}
+			[replaceChild](replaces a child node with a new node.){
+				node.replaceChild(newnode, oldnode)
+			}
+		}
+		[Traversal](){
+			[firstChild|lastChild](Start/end of this node’s list of children){
+				var x = document.getElementById("myList").firstChild.innerHTML;
+			}
+			[childNodes](Array of all this node’s children. The nodes in the collection are sorted as they appear in the source code and can be accessed by index numbers. The index starts at 0. Whitespace inside elements is considered as text, and text is considered as nodes. Comments are also considered as nodes.){
+				var c = document.body.childNodes;
+			}
+			[nextSibling|previousSibling](Neighbouring nodes with the same parent.){
+				<li id="item1">Coffee (first li)</li><li id="item2">Tea (second li)</li>
+				....
+				var x = document.getElementById("item1").nextSibling.innerHTML;
+				// -> Tea (second li)
+			}
+			[parentNode](Node that contains this node){
+				<ul>
+				  <li id="myLI">Coffee</li>
+				  <li>Tea</li>
+				</ul>
+				.....
+				var x = document.getElementById("myLI").parentNode.nodeName;
+				document.getElementById("demo").innerHTML = x;
+				//-> UL
+			}
+		}
 	}
-	[history](List of pages user has visited)
-	[location](URL of current page)
-	[navigator](info about the browser)
-	[screen](Screen area occupied by the browser)
+	[history](List of pages user has visited){
+		[Properties](){
+			[history.length]()
+		}
+		[Methods](){
+			[back](loads the previous URL in the history list.){
+				<button onclick="goBack()">Go Back</button>
+				<script>
+				function goBack() {
+				    window.history.back();
+				}
+				</script>
+			}
+			[forward](loads the next URL in the history list.){
+				history.forward()
+			}
+			[go](loads a specific URL from the history list.){
+				history.go(number|URL)
+				// The parameter can either be a number which goes to the URL within the specific position (-1 goes back one page, 1 goes forward one page), or a string.
+			}
+		}
+	}
+	[location](URL of current page){
+		[Properties](){
+			[location.host](sets or returns the hostname and port of a URL.)
+			[location.hostname]()
+			[location.href]()
+			[location.pathname]()
+			[location.port]()
+			[location.protocol]()
+			[location.search]()
+		}
+		[Methods](){
+			[assign](loads a new document.){
+				location.assign("https://www.w3schools.com");
+			}
+			[reload](used to reload the current document.  does the same as the reload button in your browser.){
+				location.reload(forceGet)
+				//forceGet = optional Specifies the type of reloading: false(default), true
+			}
+			[replace](replaces the current document with a new one. removes the URL of the current document from the document history, meaning that it is not possible to use the "back" button to navigate back to the original document.){
+				location.replace(newURL)
+			}
+		}
+	}
+	[navigator](info about the browser){
+		[Properties](){
+			[navigator.appName]()
+			[navigator.appVersion]()
+			[navigator.browserLanguage]()
+			[navigator.cookieEnabled]()
+			[navigator.platform]()
+			[navigator.userAgent]()
+		}
+	}
+	[screen](Screen area occupied by the browser){
+		[Properties](){
+			[screen.availheight]()
+			[screen.availWidth]()
+			[screen.colorDepth]()
+			[screen.height]()
+			[screen.width]()
+			[screen.pixelDepth]()
+		}
+	}
 	[window](The browser window, Top level object in the BOM){
 		[alert](if you want to make sure information comes through to the user. user has to click ok to proceed.){
 			window.alert("sometext")
@@ -145,5 +309,26 @@ The BOM (Browser Object Model) consists of the objects navigator, history, scree
 	Cookies were invented to solve the problem "how to remember information about the user":
 		⋅ When a user visits a web page, his name can be stored in a cookie.
     	⋅ Next time the user visits the page, the cookie "remembers" his name.
+
+}
+
+#JQuery
+[JQuery](A JavaScript library whose purpose is to make it easier to manipulate the DOM. The jQuery syntax is tailor-made for selecting HTML elements and performing some action on the elements.){
+	[syntax](){
+		$(selector).action()
+		⋅ $: define/access jQuery
+		⋅ (selector): query HTML elements
+		⋅ action(): action to be performed on the elements
+		[examples](){
+			$(this).hide() - hides the current element.
+			$("p").hide() - hides all <p> elements.
+			$(".test").hide() - hides all elements with class="test".
+			$("#test").hide() - hides the element with id="test".
+			$("[href]").action() - do action to all elements with href attributes
+			$("a[target='_blank']").action() -  Selects all <a> elements with a target attribute value equal to "blank"
+			$(‘tr:even') - select all even <tr> elements
+		}
+	}
+
 
 }
