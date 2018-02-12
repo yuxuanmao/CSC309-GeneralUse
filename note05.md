@@ -167,12 +167,12 @@ The BOM (Browser Object Model) consists of the objects navigator, history, scree
 	[location](URL of current page){
 		[Properties](){
 			[location.host](sets or returns the hostname and port of a URL.)
-			[location.hostname]()
-			[location.href]()
-			[location.pathname]()
-			[location.port]()
-			[location.protocol]()
-			[location.search]()
+			[location.hostname](sets or returns the hostname of a URL.)
+			[location.href](sets or returns the entire URL of the current page.)
+			[location.pathname](sets or returns the pathname of a URL.)
+			[location.port](sets or returns the port number the server uses for a URL.)
+			[location.protocol](sets or returns the protocol of the current URL, including the colon, : .)
+			[location.search](sets or returns the querystring part of a URL, including the question mark. The querystring part is the part of the URL after the question mark. This is often used for parameter passing.)
 		}
 		[Methods](){
 			[assign](loads a new document.){
@@ -189,7 +189,7 @@ The BOM (Browser Object Model) consists of the objects navigator, history, scree
 	}
 	[navigator](info about the browser){
 		[Properties](){
-			[navigator.appName]()
+			[navigator.appName](returns the name of the browser.)
 			[navigator.appVersion]()
 			[navigator.browserLanguage]()
 			[navigator.cookieEnabled]()
